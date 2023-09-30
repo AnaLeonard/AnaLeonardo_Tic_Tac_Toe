@@ -58,18 +58,19 @@ function handleTurn() {
 function getWinner() {
     let winner = null;
     winningCombos.forEach((combo, index) => {
-    if (board[combo[0]] && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) {
-    winner = board[combo[0]];
-    }
-    });
-    if (winner) {
-      return winner 
-    } else if (board.includes('')) {
-      return null // if there's an empty space, return null (no winner yet)
-    } else {
-      return 'T' // no winner and no empty spaces? That's a tie!
-    }
-}    
+        if (board[combo[0]] && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) winner = board[combo[0]];
+        });
+  
+        // if (winner) {
+        // return winner 
+        // } else if (board.includes('')) {
+        // return null // if there's an empty space, return null (no winner yet)
+        // } else {
+        // return 'T' // no winner and no empty spaces? That's a tie!
+        // }
+        return winner ? winner : board.includes('') ? null : 'T';
+
+};    
 
 function render() {
     board.forEach(function (mark, index) {
