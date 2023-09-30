@@ -13,8 +13,10 @@ const winningCombos = [
 /*----- app's state (variables) -----*/
 let board;
 let turn = 'X';
-let win;
 
+
+// const playerName1 = 'X';
+// const playerName2 = 'O';
 
 
 /*----- cached element references -----*/
@@ -34,20 +36,41 @@ function init() {
         '', '', '',
         '', '', ''
     ];
+    document.addEventListener("DOMContentLoaded", function () {
+        const nameForm = document.getElementById("nameForm");
+    
+        nameForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+    
+            const playerName1 = document.getElementById("playerName1").value;
+            const playerName2 = document.getElementById("playerName2").value;
+    
+            alert(`Welcome, ${playerName1} and ${playerName2}! Let's start the game.`);
+           
+        });
+    });
     render();
 
 };
+
+function othername() {
+    var input = document.getElementById("userInput").value;
+    alert(input);
+}
+
+
 
 function handleTurn() {
     let idx = squares.findIndex(function (square) {
         return square === event.target;
     });
     board[idx] = turn;
-    if (turn === 'X') {
-        turn = 'O'
+    if (turn === 'X' ) {
+        turn =  "O "
     } else {
         turn = 'X'
     };
+
     win = getWinner();
     render();
 
@@ -80,5 +103,7 @@ function render() {
     messages.textContent = win === 'T' ? `That's a tie, try again!` : win ? `${win} wins the game!` : `It's ${turn}'s turn!`;
 
 };
+
+
 
 init();

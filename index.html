@@ -16,6 +16,22 @@
 <body>
     <h1>Tic-Tac-Toe</h1>
     <h2>It's X's turn!</h2>
+   
+    <!-- <form id="form" onsubmit="return false;">
+        <input style="position:absolute; top:50%; left:5%; width:20%;" type="text" id="userInput" />
+        <input style="position:absolute; top:80%; left:5%; width:20%;" type="submit" onclick="othername();" />
+
+    </form> -->
+
+    <form id="nameForm">
+        <label for="playerName1" style="position:absolute; top:50%; left:5%; width:20%;">Player X Name:</label>
+        <input type="text" id="playerName1" required style="position:absolute; top:60%; left:5%; width:20%;">
+        
+        <label for="playerName2" style="position:absolute; top:50%; right:5%; width:20%;">Player O Name:</label>
+        <input type="text" id="playerName2" required style="position:absolute; top:60%; right:5%; width:20%;">
+        
+        <input type="submit" value="Start Game">
+    </form>
 
     <div class="flex-container flex-column">
         <div class="flex-container flex-wrap" id="board">
