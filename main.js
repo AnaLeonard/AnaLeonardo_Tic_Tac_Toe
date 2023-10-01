@@ -84,14 +84,16 @@ function getWinner() {
         if (board[combo[0]] && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) winner = board[combo[0]];
         });
   
-        if (winner) {
-        return winner 
-        } else if (board.includes('')) {
-        return null // if there's an empty space, return null (no winner yet)
-        } else {
-        return 'T' // no winner and no empty spaces? That's a tie!
-        }
-       // return winner ? winner : board.includes('') ? null : 'T';
+        // if (winner) {
+        // return winner ;
+        // } 
+        // else if (board.includes('')) {
+        // return null ;// if there's an empty space, return null (no winner yet)
+        // } 
+        // else {
+        // return 'T'; // no winner and no empty spaces? That's a tie!
+        // }
+        return winner ? winner : board.includes('') ? null : 'T';
 
 };    
 
@@ -100,7 +102,7 @@ function render() {
         //this sets the text content of the square of the same position to the mark on the board. 
         squares[index].textContent = mark;
     });
-    messages.textContent = win === 'T' ? `That's a tie, try again!` : win ? `${win} wins the game!` : `It's ${turn}'s turn!`;
+    messages.textContent = win === 'T' ? `That's a tie, queen!` : win ? `${win} wins the game!` : `It's ${turn}'s turn!`;
 
 };
 
