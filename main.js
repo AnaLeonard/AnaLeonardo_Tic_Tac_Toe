@@ -13,6 +13,9 @@ const winningCombos = [
 /*----- app's state (variables) -----*/
 let board;
 let turn = 'X';
+let win;
+let win1 = 0;
+let win2 = 0;
 
 
 // const playerName1 = 'X';
@@ -38,15 +41,15 @@ function init() {
     ];
     document.addEventListener("DOMContentLoaded", function () {
         const nameForm = document.getElementById("nameForm");
-    
+
         nameForm.addEventListener("submit", function (event) {
             event.preventDefault();
-    
+
             const playerName1 = document.getElementById("playerName1").value;
             const playerName2 = document.getElementById("playerName2").value;
-    
+
             alert(`Welcome, ${playerName1} and ${playerName2}! Let's start the game.`);
-           
+
         });
     });
     render();
@@ -65,8 +68,8 @@ function handleTurn() {
         return square === event.target;
     });
     board[idx] = turn;
-    if (turn === 'X' ) {
-        turn =  "O "
+    if (turn === 'X') {
+        turn = "O"
     } else {
         turn = 'X'
     };
@@ -75,36 +78,60 @@ function handleTurn() {
     render();
 
 };
+function render() {
+    board.forEach(function (mark, index) {
+        //this sets the text content of the square of the same position to the mark on the board. 
+        squares[index].textContent = mark;
+    });
+    if (win === 'T') {
+        messages.textContent = `That's a tie, queen!`
+    } 
+    else if (win) {
+        messages.textContent = `${win} wins the game!`
+        if (win === 'X') {
+            win1++;
+            console.log('X wins : ' + win1);
+            if (win1 === 3) {
+                console.log('X wins 3 times: ' + win1);
+            }
+        }
+        else if (win === 'O'){
+            win2++;
+            console.log('X wins : ' + win2);
 
+            if (win2 === 3) {
+                console.log('O wins 3 times: ' + win2);
+            }
+        }
+        else{
+            console.log('none');
+        }
+    } 
+    else {
+        messages.textContent = `It's ${turn}'s turn!`
+    }
+    //messages.textContent = win === 'T' ? `That's a tie, queen!` : win ? `${win} wins the game!` : `It's ${turn}'s turn!`;
+};
 
 
 function getWinner() {
     let winner = null;
     winningCombos.forEach((combo, index) => {
         if (board[combo[0]] && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]) winner = board[combo[0]];
-        });
-  
-        // if (winner) {
-        // return winner ;
-        // } 
-        // else if (board.includes('')) {
-        // return null ;// if there's an empty space, return null (no winner yet)
-        // } 
-        // else {
-        // return 'T'; // no winner and no empty spaces? That's a tie!
-        // }
-        return winner ? winner : board.includes('') ? null : 'T';
-
-};    
-
-function render() {
-    board.forEach(function (mark, index) {
-        //this sets the text content of the square of the same position to the mark on the board. 
-        squares[index].textContent = mark;
     });
-    messages.textContent = win === 'T' ? `That's a tie, queen!` : win ? `${win} wins the game!` : `It's ${turn}'s turn!`;
+
+    if (winner) {
+        return winner
+    } else if (board.includes('')) {
+        return null // if there's an empty space, return null (no winner yet)
+    } else {
+        return 'T' // no winner and no empty spaces? That's a tie!
+    }
+    // return winner ? winner : board.includes('') ? null : 'T';
 
 };
+
+
 
 
 
