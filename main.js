@@ -34,6 +34,7 @@ document.getElementById('reset-button').addEventListener('click', init);
 
 /*----- functions -----*/
 function init() {
+    
     board = [
         '', '', '',
         '', '', '',
@@ -84,23 +85,32 @@ function render() {
         squares[index].textContent = mark;
     });
     if (win === 'T') {
-        messages.textContent = `That's a tie, queen!`
+        messages.textContent = `That's a tie, try again!`
     } 
     else if (win) {
         messages.textContent = `${win} wins the game!`
         if (win === 'X') {
+            // alert("Player X won " + win1 + " times")
             win1++;
             console.log('X wins : ' + win1);
-            if (win1 === 3) {
+            if (win1 === 6) {
                 console.log('X wins 3 times: ' + win1);
+                alert("WON 3 TIMES PLAYER X");
+
             }
         }
         else if (win === 'O'){
+            // alert("Player O won " + win2 + " times")
+
             win2++;
             console.log('X wins : ' + win2);
 
-            if (win2 === 3) {
+            if (win2 === 6) {
                 console.log('O wins 3 times: ' + win2);
+                alert("WON 3 TIMES PLAYER O");
+
+
+                
             }
         }
         else{
