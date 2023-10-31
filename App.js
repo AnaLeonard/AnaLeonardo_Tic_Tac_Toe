@@ -12,29 +12,32 @@ function App() {
   ];
 
   /*----- app's state (variables) -----*/
-
+  const [gameOver, setGameOver] = React.useState(false);
   const [board, setBoard] = React.useState(["", "", "", "", "", "", "", "", ""]);
-  let turn = 'X';
+  const [turn, setTurn] = React.useState('X');
   let win;
+
   function handleTurn(event) {
-    console.log(event.target, event.target.id)
-    let idx = event.target.id
-    if (gameOver == false) {
-      let newBoard = [...board]
-      newBoard[idx] = turn
-      setBoard(newBoard)
-      turn = turn === 'X' ? 'O' : 'X'
+    console.log(event.target, event.target.id);
+    let idx = event.target.id;
+    if (!gameOver && board[idx] === "") {
+      let newBoard = [...board];
+      newBoard[idx] = turn;
+      setBoard(newBoard);
+      setTurn(turn === 'X' ? 'O' : 'X');
+
       // win = getWinner()
       // render()
     }
   }
+
   return (
 
     <div>
       <h1>Tic-Tac-Toe</h1>
-      <h2>It's X's turn!</h2>
+      <h2>It's {turn} turn!</h2>
 
-      {/* <form id="nameForm">
+      <form id="nameForm">
         <label htmlFor="playerName1" style={{ position: "absolute", top: "10%", left: "5%", width: "20%" }}>
           Player X Name:
         </label>
@@ -57,8 +60,7 @@ function App() {
           style={{ position: "absolute", top: "20%", right: "5%", height: "400px", width: "300px" }}
         />
 
-      </form> */}
-
+      </form>
       <div class="flex-container flex-column">
         <div class="flex-container flex-wrap" id="board" onClick={handleTurn}>
           {board.map((value, idx) => {
@@ -70,21 +72,11 @@ function App() {
           })}
         </div>
         <button id="reset-button">reset</button>
-        {/* <div class="flex-container flex-wrap" id="board" onClick={handleTurn}>        <div className="flex-container flex-wrap" id="board">
-          <div className="square" style={{ backgroundColor: "paleturquoise" }}></div>
-          <div className="square" style={{ backgroundColor: "paleturquoise" }}></div>
-          <div className="square" style={{ backgroundColor: "paleturquoise" }}></div>
-          <div className="square" style={{ backgroundColor: "paleturquoise" }}></div>
-          <div className="square" style={{ backgroundColor: "paleturquoise" }}></div>
-          <div className="square" style={{ backgroundColor: "paleturquoise" }}></div>
-          <div className="square" style={{ backgroundColor: "paleturquoise" }}></div>
-          <div className="square" style={{ backgroundColor: "paleturquoise" }}></div>
-          <div className="square" style={{ backgroundColor: "paleturquoise" }}></div>
-        </div>
-        <button id="reset-button" style={{ backgroundColor: "paleturquoise" }}>reset</button> */}
+
       </div>
     </div>
   );
 }
+
 
 ReactDOM.render(<App />, root);
